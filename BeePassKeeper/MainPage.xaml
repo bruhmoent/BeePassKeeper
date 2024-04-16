@@ -1,0 +1,34 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeePassKeeper.MainPage">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontFamily" Value="Lobster-Regular" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#f4980b" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Image Source="backdrop.png" Aspect="AspectFill" />
+
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Image HorizontalOptions="Center" VerticalOptions="Center" Source="BeePassKeeperLogo" Margin="0,50,0,0"></Image>
+            <Label Text="BeePassKeeper" FontSize="36" HorizontalOptions="Center" Margin="0,20,0,50"/>
+
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="Select or Insert Encryption Key:" HorizontalTextAlignment="Center" Margin="0,0,0,10"/>
+                <Picker WidthRequest="200" x:Name="KeyPicker" ItemsSource="{Binding Keys, Mode=OneWay}" SelectedIndexChanged="KeyPicker_SelectedIndexChanged" />
+                <Entry WidthRequest="200" x:Name="NewKeyEntry" Placeholder="New Key" IsVisible="False" Text="{Binding EncryptionKey, Mode=TwoWay}" />
+                <Button Text="Set Encryption Key" IsEnabled="{Binding ShowButton}" Command="{Binding SetEncryptionKeyCommand}" />
+                <Button Text="Reset Database" Command="{Binding ResetDatabaseCommand}" BackgroundColor="#f5260a"/>
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</ContentPage>
